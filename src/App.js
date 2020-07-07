@@ -1,5 +1,6 @@
 import * as _ from 'd3'
 
+
 const dataset = [
   [ 34,     78 ],
   [ 109,   280 ],
@@ -73,5 +74,30 @@ SVG.append('g')
 SVG.append('g')
     .attr("transform", "translate(" + padding + ",0)")
     .call(yAxis);
+
+
+
+
+const dataset2 = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+const BARSVG = _.select('body')
+              .select('#root')
+              .append('svg')
+              .attr('height', 200)
+
+
+BARSVG.selectAll('rect')
+        .data(dataset2)
+        .enter()
+        .append('rect')
+
+        .attr('fill', 'blue')
+        .attr('height', d => d * 10)
+        .attr('width', 30)
+
+        .attr('x', (d, i) => i * 35)
+        .attr('y',  d => 200 - d)
+
+
 
 
