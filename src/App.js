@@ -1,6 +1,7 @@
-import * as _ from 'd3'
+import * as _ from 'd3' // import d3 as _
 
 
+// Original Dataset
 const dataset = [
   [ 34,     78 ],
   [ 109,   280 ],
@@ -15,29 +16,38 @@ const dataset = [
 ];
 
 
-const h = 500, w = 500;
-const padding = 30;
+const h = 500, w = 500; // width and height of parrent container
+const padding = 30; // padding for parrent container
+
+// max number in the x axis
 const xMax = _.max(dataset, d => d[0])
+
+// max number in the y axis
 const yMax = _.max(dataset, d => d[1])
 
+// X Scale Equation
 const xScale = _.scaleLinear()
                 .domain([0, xMax])
                 .range([padding, w - padding])
 
+// Y Scale Equation
 const yScale = _.scaleLinear()
                 .domain([0, yMax])
                 .range([h - padding, padding])
 
+// Creating Axes
 const xAxis = _.axisBottom(xScale);
 const yAxis = _.axisLeft(yScale);
 
+
+
+// Main Container
 const SVG = _.select('body').append('svg')
-
-
+// Define w,h of parrent container
 SVG.attr('height', h)
     .attr('width', w)
 
-
+// Create circles
 SVG.selectAll('circle')
     .data(dataset)
     .enter()
@@ -47,14 +57,16 @@ SVG.selectAll('circle')
     .attr('cy', d => yScale(d[1]))
     .attr('r', 5)
 
+    // Add tooltip
+    .append('title')
+    .text( d => d )
+
+    // Add hover effect
+    .attr('class', 'hover-circle')
 
 
 
-
-
-
-
-
+// Add labels
 SVG.selectAll('text')
     .data(dataset)
     .enter()
