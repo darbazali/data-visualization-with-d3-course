@@ -90,6 +90,14 @@ SVG.append('g')
 
 
 
+
+
+
+
+
+    
+
+
 const dataset2 = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
 const BARSVG = _.select('body')
