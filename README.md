@@ -1,31 +1,5 @@
-## React Sterter Kit
-A simple React.js Starter Kit for fast development.
+# Introduction to the Data Visualization with D3 
 
-### Scripts
-**dev** for development env
-**format** runs prettier plugin
-**lint** eslint
+D3.js, or D3, stands for Data Driven Documents. D3 is a JavaScript library to create dynamic and interactive data visualizations in the browser. It's built to work with common web standards, namely HTML, CSS, and Scalable Vector Graphics (SVG).
 
-```javascript
-
-```
-
-## 01) Add Document Elements with D3
-
-The `select()` method selects one element from the document. It takes an argument for the name of the element you want and returns an HTML node for the first element in the document that matches the name. Here's an example:
-
-```javascript
-const anchor = d3.select("a");
-
-const header = d3.select('body').append('h1').text('Learning D3');
-```
-
-## 02) Select a Group of Elements with D3
-
-D3 also has the `selectAll()` method to select a group of elements. It returns an array of HTML nodes for all the items in the document that match the input string. Here's an example to select all the anchor tags in a document:
-
-```javascript
-const anchors = d3.selectAll("a");
-
-d3.selectAll('li').text("List Item");
-```
+D3 takes input data and maps it into a visual representation of that data. It supports many different data formats. D3 lets you bind (or attach) the data to the Document Object Model (DOM). You use HTML or SVG elements with D3's built-in methods to transform the data into a visualization.

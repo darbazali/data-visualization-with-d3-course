@@ -1,57 +1,70 @@
-import * as _ from 'd3';
+import * as d3 from 'd3';
 
-/* 
-    <svg xmlns="http://www.w3.org/2000/svg" width="141" height="122" viewBox="0 0 141 122"><defs><style>.a{fill:#fff;}.b,.c{stroke:none;}.c{fill:#707070;}</style></defs><g class="a">
-    
-    <path class="b" d="M 105.4614639282227 121.5 L 35.53853607177734 121.5 L 0.5774708390235901 61 L 35.53853607177734 0.5 L 105.4614639282227 0.5 L 140.4225311279297 61 L 105.4614639282227 121.5 Z"/>
-    
-    <path class="c" d="M 35.82710266113281 1 L 1.15496826171875 61 L 35.82710266113281 121 L 105.1728973388672 121 L 139.8450317382812 61 L 105.1728973388672 1 L 35.82710266113281 1 M 35.25 0 L 105.75 0 L 141 61 L 105.75 122 L 35.25 122 L 0 61 L 35.25 0 Z"/>
-    
-    </g></svg>
-*/
+/*===========================================
+    01- Add Document Elements with D3
+============================================*/
 
-const h = 400, w = 400
-
-const data = [
-    {x: 10, y: 20},
-    {x: 100, y: 100},
-    {x: 10, y: 200}
-]
-
-// Original Dataset
-const dataset = [
-    [ 34,     78 ],
-    [ 109,   280 ],
-    [ 310,   120 ],
-    [ 79,   411 ],
-    [ 420,   220 ],
-    [ 233,   145 ],
-    [ 333,   96 ],
-    [ 222,    333 ],
-    [ 78,    320 ],
-    [ 21,   123 ]
-  ];
+// selecting a dom element
+const body = d3.select('body')
 
 
-const canvas = _.select('#path').append('svg')
-
-        canvas.attr('height', h)
-                .attr('width', w)
-    
-const group = canvas.append('g')
-    .attr('transform', 'translate(100, 100)')
+// appending elements to a node
+const h1 = body.append('h1');
 
 
-const line = _.line()
-        .x( d => d[0])
-        .y( d => h - d[1] )
+// setting text to the node
+h1.text('Learing D3');
 
-group.selectAll("path")
-        .data([dataset])
-        .enter()
-        .append('path')
-        .attr('d', line)
-        .attr('fill', 'none')
-        .attr('stroke', 'red')
-        .attr('stroke-width', 5)
 
+// Getting text from the node
+const text = h1.text() // returns Learning D3
+
+
+
+/*===========================================
+    02- Select a Group of Elements
+============================================*/
+
+// selectAll() is used to select a group of elements in the selected node
+const anchor = d3.selectAll('a') // selects all anchor elements of the dom
+
+body.selectAll('li')
+    .text('list item');
+
+
+
+
+/*===========================================
+    03- Work with Data in D3
+
+    The first step is to make D3 aware of the data. The data() method is used on a selection of DOM elements to attach the data to those elements. The data set is passed as an argument to the method.
+
+    When enter() is combined with the data() method, it looks at the selected elements from the page and compares them to the number of data items in the set. If there are fewer elements than data items, it creates the missing elements.
+
+    1. select a group of elements with .selectAll
+    2. point dataset with .data(dataset)
+    3. chain .enter() methode to look for entries
+    4. append new elements with .append()
+============================================*/
+
+// our data
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+// append this data to a set of h2 tags
+d3.selectAll('h2')      // select all h2 tags
+    .data(dataset)      // point data to each h2 tag
+    .enter()            // search for missing tags
+    .append('h2')       // append missing tags
+    // .text("New Title") // set the value of h2 tags to this text
+
+
+
+
+/*===========================================
+    04- Work with Dynamic Data in D3
+============================================*/
+// The D3 text() method can take a string or a callback function as an argument:
+
+// selection.text((d) => d)
+
+    .text( (d) => d + " USD")
