@@ -68,3 +68,83 @@ d3.selectAll('h2')      // select all h2 tags
 // selection.text((d) => d)
 
     .text( (d) => d + " USD")
+
+
+/*===========================================
+    05- Add Inline Styling to Elements
+
+    D3 lets you add inline CSS styles on dynamic elements with the style() method.
+
+    The style() method takes a comma-separated key-value pair as an argument. Here's an example to set the selection's text color to blue:
+
+    selection.style("color","blue");
+============================================*/
+
+    // chage the style of all elements
+    .style( "font-family", "verdana")
+
+
+
+/*===========================================
+    06-  Change Styles Based on Data
+============================================*/
+/* 
+    For example, you may want to color a data point blue if it has a value less than 20, and red otherwise. You can use a callback function in the style() method and include the conditional logic. 
+*/
+
+    .style( 'color', d => d < 20? 'red': 'green' )
+
+
+
+/*===========================================
+    07-  Add Classes with D3
+============================================*/
+/* 
+    Using a lot of inline styles on HTML elements gets hard to manage, even for smaller apps. It's easier to add a class to elements and style that class one time using CSS rules. D3 has the attr() method to add any HTML attribute to an element, including a class name.
+
+    The attr() method works the same way that style() does. It takes comma-separated values, and can use a callback function. Here's an example to add a class of "container" to a selection:
+
+    selection.attr("class", "container");
+*/
+
+    .attr('class', 'price')
+
+
+/*===========================================
+    08-  Update the Height of an Element Dynamically
+============================================*/
+/* 
+    The previous challenges covered how to display data from an array and how to add CSS classes. You can combine these lessons to create a simple bar chart. There are two steps to this:
+
+    1) Create a div for each data point in the array
+
+    2) Give each div a dynamic height, using a callback function in the style() method that sets height equal to the data value
+*/
+
+
+d3.selectAll('div')
+    .data(dataset)
+    .enter()
+    .append('div')
+    .attr('class', 'bar')
+    .style('height', d =>  d + "px")
+
+
+/*===========================================
+    09-  Change the Presentation of a Bar Chart
+============================================*/
+
+/* 
+    1) Add space between each bar to visually separate them, which is done by adding a margin to the CSS for the bar class
+
+    2) Increase the height of the bars to better show the difference in values, which is done by multiplying the value by a number to scale the height
+
+    style.css
+    -------------
+    .bar {
+        margin: 2px
+    }
+*/
+
+
+    .style('height', d => 10 * d + 'px')
