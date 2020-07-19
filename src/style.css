@@ -13,3 +13,7 @@ body {
     display: inline-block;
     margin-right: 5px;
 }
+
+.bar:hover {
+    fill: brown
+}

@@ -61,7 +61,8 @@ const canvas = d3.select('body')
     .style('background-color', '#f6f6f6')
 
 // creat a rectangle for each data point of the array
-canvas.selectAll('rect')
+const bars = canvas.selectAll('rect')
+
     .data(dataset)
     .enter()
     .append('rect')
@@ -124,3 +125,57 @@ canvas.selectAll('rect')
 */
 
     .attr('fill', 'navy')
+
+
+/*===========================================
+    17-  Add Labels to D3 Elements
+============================================*/
+/* 
+    D3 lets you label a graph element, such as a bar, using the SVG text element.
+
+    Like the rect element, a text element needs to have x and y attributes, to place it on the SVG canvas. It also needs to access the data to display those values.
+*/
+
+canvas.selectAll('text')
+    .data(dataset)
+    .enter()
+    .append('text')
+
+
+    // set the coordinates same as bars
+    .attr('x', (d, i) => i * 30)
+    .attr('y', d => h - d * 3 )
+
+    .text( d => d)
+    .style('font-size', 10)
+
+
+/*===========================================
+    18-  Style D3 Labels
+============================================*/
+/* 
+    D3 methods can add styles to the bar labels. The fill attribute sets the color of the text for a text node. The style() method sets CSS rules for other styles, such as "font-family" or "font-size".
+*/
+
+    .style('font-size', 12)
+    .attr('fill', 'red')
+
+/*===========================================
+    19-  Add a Hover Effect to a D3 Element
+============================================*/
+/*
+    It's possible to add effects that highlight a bar when the user hovers over it with the mouse. So far, the styling for the rectangles is applied with the built-in D3 and SVG methods, but you can use CSS as well.
+ */
+
+ bars.attr('class', 'bar')
+
+
+ /*===========================================
+    20-  Add a Tooltip to a D3 Element
+============================================*/
+/* 
+    A tooltip shows more information about an item on a page when the user hovers over that item. There are several ways to add a tooltip to a visualization, this challenge uses the SVG title element.
+*/
+
+bars.append('title')
+    .text( d => d)
